@@ -1,0 +1,51 @@
+Implement the placeOrder() method in Cashier class.
+private void placeOrder() {
+    
+    String[] customerNames = {"Alice", "Bob", "Charlie", "David"};
+    CoffeeType[] coffeeTypes = CoffeeType.values();
+    String randomName = customerNames[(int) (Math.random() * customerNames.length)];
+    CoffeeType randomCoffeeType = coffeeTypes[(int) (Math.random() * coffeeTypes.length)];
+
+   
+    Order newOrder = new Order(randomName, randomCoffeeType);
+
+
+    System.out.println(Thread.currentThread().getName() + " " + cashierName +
+            ": Order id " + newOrder.getId() + " (" + newOrder.getCoffeeType() +
+            ") is accepted for " + newOrder.getName());
+}
+
+
+Implement the brew() method in the CoffeeMachine class.
+
+private void brewCoffee() {
+  
+
+    int brewingTime;
+    switch (coffeeType) {
+        case ESPRESSO:
+            brewingTime = 2000; 
+            break;
+        case LATTE:
+            brewingTime = 3000; 
+            break;
+        case MOCHA:
+            brewingTime = 4000; 
+            break;
+        default:
+            brewingTime = 2000; 
+            break;
+    }
+
+    
+    try {
+        Thread.sleep(brewingTime);
+    } catch (InterruptedException e) {
+        e.printStackTrace();
+    }
+
+    
+    System.out.println(Thread.currentThread().getName() + " " + machineName +
+            ": Order id " + order.getId() + " (" + coffeeType +
+            ") for " + order.getName() + " is ready for pickup");
+}
